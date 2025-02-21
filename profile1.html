@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@j4_1</title>
+ <link
+      href="https://i.imgur.com/7mYX66w.png"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .profile-section {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .username {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .bio {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .profile-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background-color: #3b5998;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 0.9rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .btn:hover {
+            background-color: #2d4373;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-subscribed {
+            background-color: #4CAF50;
+        }
+        .btn-subscribed:hover {
+            background-color: #45a049;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #333;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .tab:hover {
+            background-color: #f8f9fa;
+        }
+        .tab.active {
+            border-bottom: 2px solid #3b5998;
+            font-weight: bold;
+            color: #3b5998;
+        }
+        .tab-content {
+            padding: 1.5rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.post {
+    aspect-ratio: 1;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.post:hover {
+    transform: scale(1.05);
+}
+
+.post.enlarged {
+    transform: scale(2);
+    z-index: 100;
+}
+
+.post.enlarged::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+
+}
+
+.post:hover {
+    transform: scale(1.05);
+    background-color: #e4e6e9;
+        }
+        .about-item {
+            margin-bottom: 1rem;
+        }
+        .about-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        .about-value {
+            font-size: 1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <img id="profileImage" src="https://i.imgur.com/7mYX66w.png" alt="صورة الملف الشخصي" class="avatar">
+            <h2 id="profileName" class="name">♕YUS-Aia♕</h2>
+            <p class="username">@j4_1</p>
+            <p id="profileBio" class="bio">مطور العاب روبلوكس + صاحب فريق صناعة عربية</p>
+            <div class="profile-actions">
+                <button id="subscribeBtn" class="btn">
+                    <i class="fas fa-user-plus"></i> متابعة
+                </button>
+                <div class="stats">
+                    <div class="stat">
+                        <p id="postsCount" class="stat-value">0</p>
+                        <p class="stat-label">منشورات</p>
+                    </div>
+                    <div class="stat">
+                        <p id="followersCount" class="stat-value">0</p>
+                        <p class="stat-label">متابعون</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="posts"><i class="fas fa-image"></i> المنشورات</div>
+            <div class="tab" data-tab="about"><i class="fas fa-info-circle"></i> حول</div>
+        </div>
+
+        <div class="tab-content active" id="posts">
+            <div class="posts-grid">
+<div class="post" style="background-image: url('https://i.imgur.com/e8pJtFE.png'); background-size: cover;"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="about">
+            <div class="about-item">
+                <h3 class="about-label"><i class="fas fa-user"></i> الاسم</h3>
+                <p id="aboutName" class="about-value">جون دو</p>
+            </div>
+            <div class="about-item">
+                <h3 class="about-label"><i class="fas fa-map-marker-alt"></i> الموقع</h3>
+                <p class="about-value">ليش تبي تعرف؟</p>
+            </div>
+            <div class="about-item">
+                <h3 class="about-label"><i class="fas fa-calendar-alt"></i> انضم في</h3>
+                <p class="about-value">February 2025</p>
+            </div>
+            <div class="about-item">
+                <h3 class="about-label"><i class="fas fa-briefcase"></i> العمل</h3>
+                <p class="about-value">مبرمج</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const BIN_ID = '67b6381cad19ca34f80a21b1';
+    const X_MASTER_KEY = '$2a$10$UMqllPtc8nmDfDZdUqsmh.Lr6j1clmPx.IkunLmjkibx0KAEt1hCW';
+    const X_ACCESS_KEY = '$2a$10$Cx3PrPpPmxoxPA8fznU/IOUcFiCANmrjI53sFj.LxhZY8TzZAhTB.';
+
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const postsCountElement = document.getElementById('postsCount');
+    const followersCountElement = document.getElementById('followersCount');
+    const profileImage = document.getElementById('profileImage');
+    const profileName = document.getElementById('profileName');
+    const profileBio = document.getElementById('profileBio');
+    const aboutName = document.getElementById('aboutName');
+
+    let isSubscribed = localStorage.getItem('isSubscribed') === 'true';
+    let postsCount = 0;
+    let followersCount = 0;
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            tab.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    subscribeBtn.addEventListener('click', () => {
+        if (!isSubscribed) {
+            isSubscribed = true;
+            localStorage.setItem('isSubscribed', 'true');
+            followersCount++;
+            updateUI();
+            saveDataToJSONBin();
+        }
+    });
+
+    function updatePostsCount() {
+        postsCountElement.textContent = postsCount;
+    }
+
+    function updateFollowersCount() {
+        followersCountElement.textContent = followersCount;
+    }
+
+    function updateSubscribeButton() {
+        if (isSubscribed) {
+            subscribeBtn.classList.add('btn-subscribed');
+            subscribeBtn.innerHTML = '<i class="fas fa-user-check"></i> مشترك';
+        } else {
+            subscribeBtn.classList.remove('btn-subscribed');
+            subscribeBtn.innerHTML = '<i class="fas fa-user-plus"></i> متابعة';
+        }
+    }
+
+    async function saveDataToJSONBin() {
+        const data = {
+            postsCount: postsCount,
+            followersCount: followersCount,
+            profileImage: profileImage.src,
+            name: profileName.textContent,
+            bio: profileBio.textContent
+        };
+
+        try {
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': X_MASTER_KEY,
+                    'X-Access-Key': X_ACCESS_KEY
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save data');
+            }
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    }
+
+    async function loadDataFromJSONBin() {
+        try {
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                headers: {
+                    'X-Master-Key': X_MASTER_KEY,
+                    'X-Access-Key': X_ACCESS_KEY
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to load data');
+            }
+
+            const result = await response.json();
+            const data = result.record;
+
+            postsCount = data.postsCount || 0;
+            followersCount = data.followersCount || 0;
+            profileImage.src = data.profileImage || profileImage.src;
+            profileName.textContent = data.name || profileName.textContent;
+            profileBio.textContent = data.bio || profileBio.textContent;
+            aboutName.textContent = data.name || aboutName.textContent;
+
+            updateUI();
+        } catch (error) {
+            console.error('Error loading data:', error);
+        }
+    }
+
+    function updateUI() {
+        updateSubscribeButton();
+        updatePostsCount();
+        updateFollowersCount();
+    }
+
+    window.addEventListener('load', () => {
+        loadDataFromJSONBin();
+        updateUI();
+    });
+</script>
+</body>
+</html>
